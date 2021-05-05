@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
         {
             GameController.singleton.CrystalValue++;
             other.GetComponent<Animator>().Play("EatedCoin");
-            _crystalCounter++;
+            if (!_feverCheck)
+                _crystalCounter++;
         }
 
         if (other.CompareTag("ChangeColorPoint"))
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 _crystalCounter = 0;
+                GameController.singleton.FoodValue++;
                 other.GetComponent<Animator>().Play("EatedBlock");
                 GameController.singleton.SpawnTailSegment();
             }
@@ -75,7 +77,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _currColor = GameController.singleton.CurrentColor;
-        if (_crystalCounter >= 3)
+        if (_crystalCounter >= 3 && !_feverCheck)
         {
             _crystalCounter = 0;
             _feverCheck = true;
