@@ -17,8 +17,8 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        _crystalText.text = "Кристалов: " + Mathf.Round(GameController.singleton.CrystalValue).ToString();
-        _foodText.text = "Еды: " + Mathf.Round(GameController.singleton.FoodValue).ToString();
+        _crystalText.text = "Кристаллы: " + Mathf.Round(GameController.singleton.CrystalValue).ToString();
+        _foodText.text = "Еда: " + Mathf.Round(GameController.singleton.FoodValue).ToString();
     }
 
     void LoseGamePanelShow()
