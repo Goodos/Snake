@@ -10,7 +10,8 @@ public class GameController : MonoBehaviour
     public List<GameObject> _tails = new List<GameObject>();
     public Data Data;
     public Color CurrentColor;
-    public UnityAction EndGameAction;
+    public UnityAction LoseGameAction;
+    public UnityAction WinGameAction;
     public float CrystalValue = 0;
     public float FoodValue = 0;
 
@@ -36,9 +37,12 @@ public class GameController : MonoBehaviour
 
     public void SpawnTailSegment()
     {
-        GameObject newTail = Instantiate(_tailPrefab);
-        _tails.Add(newTail);
-        newTail.SendMessage("GetIndex", _tails.IndexOf(newTail));
+        if (_tails.Capacity <= 5)
+        {
+            GameObject newTail = Instantiate(_tailPrefab);
+            _tails.Add(newTail);
+            newTail.SendMessage("GetIndex", _tails.IndexOf(newTail));
+        }
     }
 
     public void NewColor(Color color)

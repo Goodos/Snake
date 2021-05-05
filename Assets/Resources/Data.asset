@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   FirstColor: 2
-  StartSpeed: 2
+  StartSpeed: 4

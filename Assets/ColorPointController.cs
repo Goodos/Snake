@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColorPointController : MonoBehaviour
 {
-    //public Color PointColor;
     public Data.ColorPick PointColor;
     [SerializeField] private ParticleSystem[] _ps = new ParticleSystem[3];
 

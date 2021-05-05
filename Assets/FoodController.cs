@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
-    //public Color FoodColor;
     public Data.ColorPick FoodColor;
 
     private void Start()

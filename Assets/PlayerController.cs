@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Coin"))
         {
+            GameController.singleton.CrystalValue++;
             other.GetComponent<Animator>().Play("EatedCoin");
             _crystalCounter++;
         }
@@ -28,14 +29,14 @@ public class PlayerController : MonoBehaviour
         {
             if (Data.GetColor(other.GetComponent<FoodController>().FoodColor) == _currColor || _feverCheck)
             {
+                GameController.singleton.FoodValue++;
                 _crystalCounter = 0;
                 other.GetComponent<Animator>().Play("EatedFood");
                 GameController.singleton.SpawnTailSegment();
             } 
             else
             {
-                GameController.singleton.EndGameAction.Invoke();
-                Debug.Log("you died");
+                GameController.singleton.LoseGameAction.Invoke();
             }
         }
 
@@ -43,14 +44,20 @@ public class PlayerController : MonoBehaviour
         {
             if (!_feverCheck)
             {
-                GameController.singleton.EndGameAction.Invoke();
-                Debug.Log("you died");
+                _crystalCounter = 0;
+                GameController.singleton.LoseGameAction.Invoke();
             }
             else
             {
+                _crystalCounter = 0;
                 other.GetComponent<Animator>().Play("EatedBlock");
                 GameController.singleton.SpawnTailSegment();
             }
+        }
+
+        if (other.CompareTag("Finish"))
+        {
+            GameController.singleton.WinGameAction.Invoke();
         }
     }
 
@@ -58,11 +65,11 @@ public class PlayerController : MonoBehaviour
     {
         GameController.singleton._tails.Add(gameObject);
         _rb = GetComponent<Rigidbody>();
-        //_currColor = GameController.singleton.Data.FirstColor;
         _currColor = Data.GetColor(GameController.singleton.Data.FirstColor);
         transform.Find("Player").GetComponent<MeshRenderer>().sharedMaterial.color = _currColor;
         _speed = GameController.singleton.Data.StartSpeed;
-        GameController.singleton.EndGameAction += Death;
+        GameController.singleton.LoseGameAction += StopMovement;
+        GameController.singleton.WinGameAction += StopMovement;
     }
 
     void Update()
@@ -124,7 +131,7 @@ public class PlayerController : MonoBehaviour
         _feverCheck = false;
     }
 
-    void Death()
+    void StopMovement()
     {
         _feverCheck = false;
         GameController.singleton._canMove = false;

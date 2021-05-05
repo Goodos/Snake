@@ -250,6 +250,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crystalText: {fileID: 1292637551}
   _foodText: {fileID: 1314475814}
+  _loseGamePanel: {fileID: 78944188249515020, guid: 5d942d1fe9e655242894e2cb95e8784c,
+    type: 3}
+  _winGamePanel: {fileID: 5960736432390270965, guid: e63e9169a299e1a4191f340af5ec16b5,
+    type: 3}
 --- !u!1 &667366138
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +394,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.754717, g: 0.72128785, b: 0.6301175, a: 1}
+  m_Color: {r: 1, g: 0.9671333, b: 0.8726415, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -924,7 +928,7 @@ PrefabInstance:
     - target: {fileID: 6348462941714192938, guid: dda028c674f75594bb1eb4cafcf69f9b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6348462941714192938, guid: dda028c674f75594bb1eb4cafcf69f9b,
         type: 3}
